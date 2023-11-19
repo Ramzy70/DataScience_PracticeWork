@@ -52,3 +52,22 @@ print(Mr)
 Cov = np.dot(np.dot(Mr.T, NIn), Mr)
 print("\nCovariance Matrix Cov:")
 print(Cov)
+
+eigenvalues, eigenvectors = np.linalg.eig(Cov)
+print("\nEigenvalues:")
+print(eigenvalues)
+print("\nEigenvectors:")
+print(eigenvectors)
+
+sorted_indices = np.argsort(eigenvalues)[::-1]
+sorted_eigenvalues = eigenvalues[sorted_indices]
+sorted_eigenvectors = eigenvectors[:, sorted_indices]
+cumulative_variance = np.cumsum(sorted_eigenvalues) / np.sum(sorted_eigenvalues)
+explained_variance_index = np.argmax(cumulative_variance >= 0.9)
+selected_eigenvectors = sorted_eigenvectors[:, :explained_variance_index + 1]
+print("\nSelected Eigenvectors:")
+print(selected_eigenvectors)
+
+projected_data = M @ selected_eigenvectors
+print("\nProjected Data:")
+print(projected_data)
