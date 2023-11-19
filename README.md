@@ -1,2 +1,2 @@
-# DataScience_Tp2
+# DataScience_PracticeWork
 These are some practice works for the 4th year Data Science Module
